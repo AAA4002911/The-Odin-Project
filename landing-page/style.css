@@ -1,0 +1,145 @@
+* {
+    margin: 0;
+}
+
+body {
+    font-family: 'Roboto Flex', sans-serif;
+}
+
+header h1 {
+    float: left;
+    font-size: 24px;
+    color: #f9faf8;
+    margin-top: 12px;
+}
+
+header {
+    background: #1F2937;
+    color: white;
+    height: 50px;
+    padding: 0 15% 0 15%;
+}
+
+header nav {
+    float: right;
+}
+
+nav li {
+    display: inline-block;
+    padding: 17px 10px;
+}
+
+nav li:hover {
+    background: #3882f6;
+    cursor: pointer;
+}
+
+#hero {
+    background-color: #1F2937;
+    padding: 50px 0;
+    margin-bottom: 50px;
+}
+
+.primary-text {
+    font-size: 48px;
+    font-weight: 800;
+    color: #f9faf8;
+}
+
+.secondary-text {
+    font-size: 18px;
+    color: #e5e7eb;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+.padding {
+    padding: 0 15% 0 15%;
+}
+
+#hero>p {
+    margin-left: 15%;
+    text-align: justify;
+}
+
+#hero>div {
+
+    background-color: #3882f6;
+    color: #f9faf8;
+    font-weight: 600;
+    font-size: 18px;
+    margin: 10px 0 10px 15%;
+    width: 130px;
+    height: 30px;
+    text-align: center;
+    padding-top: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#hero>img {
+    float: right;
+    margin: 30px 200px 10px 40px;
+}
+
+#info {
+    display: flex;
+    background-color: white;
+    height: 300px;
+    column-gap: 50px;
+}
+
+.card {
+    border-radius: 50%;
+    border: 5px solid #3882f6;
+}
+
+#info h3 {
+    text-align: center;
+    margin-top: 20px;
+}
+
+blockquote {
+    background-color: #e5e7eb;
+    height: 300px;
+}
+
+#foot-1 {
+    margin: 80px 15%;
+    background-color: #3882f6;
+    height: 100px;
+    border-radius: 5px;
+}
+
+#foot-1>p {
+    color: white;
+    padding: 30px 40px;
+    line-height: 25px;
+}
+
+#foot-1>div {
+    background-color: #3882f6;
+    border: 2px solid white;
+    color: #f9faf8;
+    font-weight: 600;
+    font-size: 18px;
+    float: right;
+    position: relative;
+    bottom: 80px;
+    right: 50px;
+    width: 130px;
+    height: 30px;
+    text-align: center;
+    padding-top: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#foot-2 {
+    background-color: #1F2937;
+    text-align: center;
+    height: 50px;
+}
