@@ -42,32 +42,72 @@ function playRound(playerSelection, computerSelection) {
         else return `"It's a tie"`;
     }
 }
-//Validating player input
-function input_validator(input) {
-    if (input == 'Rock' || input == 'ROCK' || input == 'rock') return 'Rock';
-    else if (input == 'Paper' || input == 'PAPER' || input == 'paper') return 'Paper';
-    else if (input == 'Scissors' || input == 'SCISSORS' || input == 'scissors') return 'Scissors';
-    else return false;
-}
-//Rounds of game
-function game() {
-    for (let i = 0; i < 5; i++) {
-        const input = prompt("Select (Rock, Paper, Scissors): ");
-        const playerSelection = input_validator(input);
-        if (playerSelection === false) {
-            console.log("Invalid input");
-            i--;
-            continue;
-        }
-        const computerSelection = getComputerChoice();
-        console.log(playRound(playerSelection, computerSelection));
-    }
 
-    if (player_score > computer_score) console.log("Congratulation! You Win the Game.");
-    else if (player_score < computer_score) console.log("Sorry! You Lose the Game.");
-    else console.log("Draw");
-}
 
 let player_score = 0;
 let computer_score = 0;
-game();
+let rounds = 0;
+function resetFunc () {
+    document.getElementById("final-result").innerText = '';
+    document.getElementById("result").innerText = '';
+    document.getElementById("bot").innerText = 'Bot is sleeping again......zzz';
+    document.getElementById("score").innerText =  "0 / 5";
+    rounds = 0;
+    document.getElementById("score").style.color = 'black';
+}
+
+// Final Result Function
+function finalResult() {
+    const output = document.getElementById("final-result");
+    if (player_score > computer_score) {
+        output.style.color = 'green';
+        output.innerText = ("Congratulation! You Win the Game.");
+    }
+    else if (player_score < computer_score) {
+        output.style.color = 'red';
+        output.innerText = ("Sorry! You Lose the Game.");
+    }
+        else {
+            output.style.color = 'blue';
+            output.innerText = ("Draw");
+        }
+    player_score = 0;
+    computer_score = 0;
+    setTimeout(resetFunc, 2500);
+}
+
+function addResult(result, computerSelection, rounds) {
+    document.getElementById("bot").innerText = "Bot choosed: " + computerSelection;
+    document.getElementById("score").innerText = rounds + " / 5"; 
+    setTimeout(function() {document.getElementById("result").innerText = result;}, 150);
+}
+
+// Buttons click functions
+function rockFunc() {
+    const computerSelection = getComputerChoice();
+    const result = playRound("Rock", computerSelection);
+    rounds++;
+    addResult(result, computerSelection, rounds);
+    if (rounds == 5) finalResult();
+    if (rounds > 5) document.getElementById("score").style.color = '#eee';
+}
+function paperFunc() {
+    const computerSelection = getComputerChoice();
+    const result = playRound("Paper", computerSelection)
+    rounds++;
+    addResult(result, computerSelection, rounds);
+    if (rounds == 5) finalResult();
+    if (rounds > 5) document.getElementById("score").style.color = '#eee';
+}
+function scissorsFunc() {
+    const computerSelection = getComputerChoice();
+    const result = playRound("Scissors", computerSelection)
+    rounds++;
+    addResult(result, computerSelection, rounds);
+    if (rounds == 5) finalResult();
+    if (rounds > 5) document.getElementById("score").style.color = '#eee';
+}
+
+document.querySelector("#rock").addEventListener('click', rockFunc);
+document.querySelector("#paper").addEventListener('click', paperFunc);
+document.querySelector("#scissor").addEventListener('click', scissorsFunc);
