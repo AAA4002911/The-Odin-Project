@@ -1,0 +1,59 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-image: linear-gradient(rgb(201, 112, 112), white);
+    height: 200vh;
+}
+
+#main-container {
+    width: 80vw;
+    height: auto;
+    margin: 12vh auto;
+    text-align: center;
+    font-size: 25px;
+    background-color: whitesmoke;
+}
+
+button {
+    position: absolute;
+    top: 7%;
+    background-color: black;
+    color: white;
+    border-style: none;
+    width: 10vh;
+    border-radius: 50px;
+}
+
+#resize {
+    right: 10%;
+}
+
+#toggle-grid {
+    right: 10%;
+    top: 2%;
+    width: 100px;
+}
+
+input {
+    position: absolute;
+    left: 10%;
+    top: 1%;
+}
+
+#random {
+    top: 7%;
+    left: 10%;
+    width: 200px;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.container div {
+    border: 1px solid black;
+}
