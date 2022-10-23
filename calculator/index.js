@@ -1,88 +1,145 @@
-function calculator(x, y, operator) {
+function addition(num1, num2) {
+    return num1 + num2;
+}
+
+function subtraction(num1, num2) {
+    return num1 - num2;
+}
+
+function multiplication(num1, num2) {
+    return num1 * num2;
+}
+
+function division(num1, num2) {
+    return num1 / num2;
+}
+
+function operate(x, y, operator) {
     let result;
     switch (operator) {
         case '+':
-            result = x + y;
+            result = addition(x, y);
             break;
         case '-':
-            result = x - y;
+            result = subtraction(x, y);
             break;
         case '*':
-            result = x * y;
+            result = multiplication(x, y);
             break;
         case '/':
-            result = (x / y);
+            result = division(x, y);
             if (!Number.isInteger(result)) result = result.toFixed(2);
+            return result;
     }
-    return result;
+    document.querySelector('#input').setAttribute('value', result);
+    num1 = result;
+    inputString = result.toString();
 }
 
 function toggle_btn(val) {
+    let idvalue = val;
     if (val == '+') idvalue = 'plus';
     if (val == '-') idvalue = 'minus';
     if (val == '*') idvalue = 'multiply';
     if (val == '/') idvalue = 'divide';
+    if (val == 'AC') {
+        document.querySelectorAll(".hl").forEach(clr => { clr.classList.remove('hl') });
+        return;
+    }
     document.getElementById(idvalue).classList.toggle("hl");
 }
 
+let count = false;
 let inputString = '';
 let num1 = 0;
 let num2 = 0;
-let operator = '';
+let operator = 0;
 
 function input(val) {
     if (val == '+' || val == '-' || val == '*' || val == '/') {
-        document.querySelector('#input').setAttribute('value', '');
-        num1 = parseFloat(inputString);
-        operator = val;
-        toggle_btn(val);
-        inputString = '';
-        console.log(num1, operator)
-        return
+        if (count == false) {
+            document.querySelector('#input').setAttribute('value', '');
+            document.querySelector('#dot').disabled = false;
+            operator = val;
+            num1 = parseFloat(inputString);
+            toggle_btn(val);
+            inputString = '';
+            count = true;
+        }
+        else {
+            toggle_btn(operator);
+            num2 = parseFloat(inputString);
+            operate(num1, num2, operator);
+            document.querySelector('#dot').disabled = false;
+            decimal = false;
+            inputString = '';
+            operator = val;
+            toggle_btn(operator);
+        }
     }
     else if (val == '=') {
-        num2 = parseFloat(inputString);
-        console.log(num2, val);
-        let final_result = calculator(num1, num2, operator);
-        console.log(final_result);
-        document.querySelector('#input').setAttribute('value', final_result);
-        inputString = final_result.toString();
         toggle_btn(operator);
-        return
+        num2 = parseFloat(inputString);
+        operate(num1, num2, operator);
+        document.querySelector('#dot').disabled = false;
+        decimal = false;
+        count = false;
     }
     else if (val == 'AC') {
-        console.log("reset")
         document.querySelector('#input').setAttribute('value', '0');
-        toggle_btn(operator);
+        document.querySelector('#dot').disabled = false;
+        toggle_btn(val);
         inputString = '';
         num1 = 0;
         num2 = 0;
-        operator = '';
+        operator = 0;
+        count = false;
     }
     else if (val == 'C') {
-        console.log("Backspace")
         inputString = inputString.slice(0, -1);
+        document.querySelector('#input').setAttribute('value', inputString);
     }
-    else inputString += val;
-    document.querySelector('#input').setAttribute('value', inputString);
+    else {
+        if (val == undefined) val = '.';
+        inputString += val;
+        document.querySelector('#input').setAttribute('value', inputString);
+        if (val == '.') {
+            document.querySelector('#dot').disabled = true;
+        }
+    }
 }
 
+const btn = document.querySelectorAll('button')
+btn.forEach(button => {
+    button.addEventListener('click', function (e) { input(e.target.value) })
+})
 
-document.querySelector("#block0").addEventListener("click", function () { input('0'); })
-document.querySelector("#block1").addEventListener("click", function () { input('1'); })
-document.querySelector("#block2").addEventListener("click", function () { input('2'); })
-document.querySelector("#block3").addEventListener("click", function () { input('3'); })
-document.querySelector("#block4").addEventListener("click", function () { input('4'); })
-document.querySelector("#block5").addEventListener("click", function () { input('5'); })
-document.querySelector("#block6").addEventListener("click", function () { input('6'); })
-document.querySelector("#block7").addEventListener("click", function () { input('7'); })
-document.querySelector("#block8").addEventListener("click", function () { input('8'); })
-document.querySelector("#block9").addEventListener("click", function () { input('9'); })
-document.querySelector("#dot").addEventListener("click", function () { input('.'); })
-document.querySelector("#plus").addEventListener("click", function () { input('+'); })
-document.querySelector("#minus").addEventListener("click", function () { input('-'); })
-document.querySelector("#multiply").addEventListener("click", function () { input('*'); })
-document.querySelector("#divide").addEventListener("click", function () { input('/') })
-document.querySelector("#ans").addEventListener("click", function () { input('='); })
-document.querySelector("#backspace").addEventListener("click", function () { input('C'); })
-document.querySelector("#clr").addEventListener("click", function () { input('AC'); })
+// Event Listener for keyboard button press
+document.addEventListener('keydown', (event) => {
+    let operators = {
+        '/': 'divide',
+        'x': 'multiply',
+        '*': 'multiply',
+        '+': 'plus',
+        '-': 'minus'
+    }
+
+    if(!isNaN(event.key) && event.key !== ' '){
+        document.getElementById(`block${event.key}`).click();
+    }
+    if (['/', 'x', '+', '-', '*'].includes(event.key)) {
+        document.getElementById(operators[event.key]).click();
+    }
+    if (event.key === 'Backspace') {
+        document.getElementById('backspace').click();	
+    }
+    if (event.key === '=' || event.key === 'Enter') {
+        document.getElementById('ans').click();	
+    }
+    if (event.key === '.') {
+        document.getElementById('dot').click();	
+    }
+    if (event.key === 'Delete') {
+        document.getElementById('clr').click();
+    }
+});
