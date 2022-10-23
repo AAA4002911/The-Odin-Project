@@ -29,6 +29,7 @@ button {
     font-size: 25px;
     border: none;
     background-color: #928d8d;
+    color: black;
 }
 
 button:active {
