@@ -57,3 +57,9 @@ input {
 .container div {
     border: 1px solid black;
 }
+
+@media screen and (max-width: 480px) {
+    body {
+        height: 88vh;
+    }
+}
