@@ -1,2 +1,2 @@
 Link for preview
-https://aaa4002911.github.io/The-Odin-Project/odin-recipes/
+https://zeeshan4002911.github.io/The-Odin-Project/odin-recipes/
