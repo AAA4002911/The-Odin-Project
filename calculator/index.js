@@ -29,7 +29,6 @@ function operate(x, y, operator) {
         case '/':
             result = division(x, y);
             if (!Number.isInteger(result)) result = result.toFixed(2);
-            return result;
     }
     document.querySelector('#input').setAttribute('value', result);
     num1 = result;
