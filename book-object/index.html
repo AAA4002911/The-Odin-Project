@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="./index.js" defer></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Library</h1>
+        <button id="addBook">NEW BOOK</button>
+        <div id="model">
+            <div id="model-content">
+                <form id="form">
+                    <label for="title">Title</label>
+                    <input type="text" id="title" name="title">
+                    <label for="author">Author</label>
+                    <input type="text" id="author" name="author">
+                    <label for="pages">Pages</label>
+                    <input type="text" id="pages" name="pages">
+                    <label for="read">have you read this book ?</label>
+                    <input type="checkbox" name="read" id="read">
+                    <button type="submit" id="submit">Submit</button>
+                </form>
+            </div>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Pages</th>
+                <th>Read</th>
+                <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- code injected using js -->
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
